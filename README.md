@@ -1,4 +1,15 @@
 # PaylocityBackendChallenge
+
+Technology used :
+   1. Spring Boot
+   2. Java 11
+   3. H2 Database
+   4. JPA
+   5. Postman
+
+Postman Collections: 
+
+
 Requirements
 
 Question: Able to view employees and their dependents
