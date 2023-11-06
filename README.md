@@ -54,7 +54,9 @@ HOW TO RUN PROJECT :
 Requirements :
 
 Question: Able to view employees and their dependents
+Assumptions:
 
+    to see employee and their dependents , an employee should have one to many relationship with dependent, as an employee can have multiple dependents.
     I have created 2 Controller EmployeeController and DependentController which will deal with all employees and dependntsa relation ship.
     steps:
     "addEmployee" to add employee record in table.
@@ -62,18 +64,26 @@ Question: Able to view employees and their dependents
     "addDependentToEmployee" api will allow use to add dependent for an employee.
     
     **Note** both controller implements interface to accomodate furture additional requirments.
+
+    Employee table can save basic personal attributes of employee plus gross salary.
+    Dependent table will save basic attributes of dependent, relation type to an employee and a foregin key anme employee_id which will connect both tabes.
    
 
 Question: To Calculate the total salary after deducting amount as per given rules:
+Assumptions:
 
     1. created SalaryController which will deal with all salary related tasks.
-    "addSalaryToEmployee" will calculate salary by dividing it to 26 paycheck and deduct the amount as per the following rules and save the record in DB. 
-    "getEmployeeSalary" will allow us to get salary details of an employee by passing an employee id.
+    2. Salary table will save total salary after deducting amount based on rules and employee_id to make a relationship with the associated employee.
+    3."addSalaryToEmployee" will calculate salary by dividing it to 26 paycheck and deduct the amount as per the rules and save the record in DB. 
+    4. "getEmployeeSalary" will allow us to get salary details of an employee by passing an employee id.
     to view an employee salary run "addSalaryToEmployee" api which will give result as total salary which is the salary after deducting based on rules.
     **Note**  controller implements interface to accomodate furture additional requirments.
 
 
     2. Calculation : to calculate final amount from gross salary , I have enhance RelationShip enum by adding one more field "Amount". it makes easy to make amount final get the amount         in for loop by comparing the relation type.
+
+   Exception:
+      Added exception handle class if user trying to get some data which doesnt exisit.
 
 DataBase 
 
