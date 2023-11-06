@@ -17,18 +17,19 @@ HOW TO RUN PROJECT :
   6. and connect to database
   7. add employee
 
-         ex:  curl --location 'http://localhost:8080/api/v1/Employee' \
-               --header 'Content-Type: application/json' \
-               --data '{   
-                         "firstName" : "Anamika",
-                         "lastName": "gupta",
-                         "grossSalary" : 140000,
-                        "dateOfBirth": "1984-07-04"
-                       }'
+         ex:  curl --location 'http://localhost:8080/api/v1/employee' \
+            --header 'Content-Type: application/json' \
+            --data '{   
+                "firstName" : "Anamika",
+                "lastName": "gupta",
+                "grossSalary" : 140000,
+               "dateOfBirth": "1984-07-04"
+                
+            }'
 
 8. add dependent
 
-         curl --location 'http://localhost:8080/api/v1/Depenedents' \
+         curl --location 'http://localhost:8080/api/v1/dependents' \
          --header 'Content-Type: application/json' \
          --data '{
              "firstName" : "divya",
@@ -45,7 +46,7 @@ HOW TO RUN PROJECT :
 
 10. add salary to amployee by passing employee id as a path variable. it will give gross salary , and total salary after deduction with all the details of an employee.
 
-         curl --location --request POST 'http://localhost:8080/api/v1/Salary/1/salary/add' \
+         curl --location --request POST 'http://localhost:8080/api/v1/employee/1/dependents/1/add' \
          --data ''
     
 
