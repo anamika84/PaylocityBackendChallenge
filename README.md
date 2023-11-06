@@ -7,8 +7,6 @@ Technology used :
    4. JPA
    5. Postman
 
-Postman Collections: 
-
 
 Requirements :
 
