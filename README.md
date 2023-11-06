@@ -21,9 +21,11 @@ Question: Able to view employees and their dependents
 
 Question: To Calculate the total salary after deducting amount as per given rules:
 
-    I have created SalaryController which will deal with al salary related tasks.
+    1. I have created SalaryController which will deal with al salary related tasks.
     "getEmployeeSalary" will allow us to get salary details of an employee by passing an employee id.
     "addSalaryToEmployee" will calculate salary by dividing it to 26 paycheck and deduct the amount as per the following rules and save the record in DB
+
+    2. Calculation : to calculate final amount from gross salary , I have enhance RelationShip enum by adding one more field "Amount". it makes easy to make amount final get the amount         in for loop by comparing the relation type.
 
 DataBase 
 
