@@ -9,7 +9,7 @@ Technology used :
 
 HOW TO RUN PROJECT :
 
-  1. download the repo fro github
+  1. download the repo from github
   2. open in any IDE
   3. run the application by running Employee2Application.java . database tables will be create during runtime
   4. open brwser and write http://localhost:8080/h2-console which will open a login box.
