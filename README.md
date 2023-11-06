@@ -7,8 +7,6 @@ Question: Able to view employees and their dependents
     "addDependentToEmployee" api will allow use to add dependent for an employee.
     "removeDependentFromEmployee" api will allow us to remove any dependent from an employee
 
-  * both controllers implementing interface and override method with the thought of accomodate the additional requirement in future.
-
 
 Question: To Calculate the total salary after deducting amount as per given rules:
 
@@ -16,4 +14,12 @@ Question: To Calculate the total salary after deducting amount as per given rule
     "getEmployeeSalary" will allow us to get salary details of an employee by passing an employee id.
     "addSalaryToEmployee" will calculate salary by dividing it to 26 paycheck and deduct the amount as per the following rules and save the record in DB
 
-  To save the data in Databse I have create 3 tables 
+DataBase 
+
+    I have used relational DataBase to make a relation b/w employye , dependent and salary data.
+    an employee can have many dependents.
+    an employee can have multiple salaries.
+
+    spring boot jpa dependency will aloow cfreating tbale on the fly while starting application.
+    
+    
