@@ -7,6 +7,48 @@ Technology used :
    4. JPA
    5. Postman
 
+HOW TO RUN PROJECT :
+
+  1. download the repo fro github
+  2. open in any IDE
+  3. run the application by running Employee2Application.java . database tables will be create during runtime
+  4. open brwser and write http://localhost:8080/h2-console which will open a login box.
+  5. add JDBC URL: jdbc:h2:mem:test 
+  6. and connect to database
+  7. add employee
+
+         ex:  curl --location 'http://localhost:8080/api/v1/Employee' \
+               --header 'Content-Type: application/json' \
+               --data '{   
+                         "firstName" : "Anamika",
+                         "lastName": "gupta",
+                         "grossSalary" : 140000,
+                        "dateOfBirth": "1984-07-04"
+                       }'
+
+8. add dependent
+
+         curl --location 'http://localhost:8080/api/v1/Depenedents' \
+         --header 'Content-Type: application/json' \
+         --data '{
+             "firstName" : "divya",
+             "lastName": "singh",
+             "relationship" : "DomesticPartner",
+             "dateOfBirth": "2007-09-04"
+             
+         }'
+
+9. add dependent to employee by giving employee id and dependent id as a path variable. it will show employee details with all dependent associated with employee.
+   
+         curl --location --request POST 'http://localhost:8080/api/v1/Employee/1/dependents/3/add' \  
+         --data ''
+
+10. add salary to amployee by passing employee id as a path variable. it will give gross salary , and total salary after deduction with all the details of an employee.
+
+         curl --location --request POST 'http://localhost:8080/api/v1/Salary/1/salary/add' \
+         --data ''
+    
+
 
 Requirements :
 
