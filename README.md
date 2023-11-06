@@ -24,8 +24,9 @@ Question: Able to view employees and their dependents
 Question: To Calculate the total salary after deducting amount as per given rules:
 
     1. created SalaryController which will deal with all salary related tasks.
-    "addSalaryToEmployee" will calculate salary by dividing it to 26 paycheck and deduct the amount as per the following rules and save the record in DB
+    "addSalaryToEmployee" will calculate salary by dividing it to 26 paycheck and deduct the amount as per the following rules and save the record in DB. 
     "getEmployeeSalary" will allow us to get salary details of an employee by passing an employee id.
+    to view an employee salary run "addSalaryToEmployee" api which will give result as total salary which is the salary after deducting based on rules.
     **Note**  controller implements interface to accomodate furture additional requirments.
 
 
