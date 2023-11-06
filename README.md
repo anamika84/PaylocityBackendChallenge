@@ -13,25 +13,33 @@ Requirements :
 Question: Able to view employees and their dependents
 
     I have created 2 Controller EmployeeController and DependentController which will deal with all employees and dependntsa relation ship.
+    steps:
+    "addEmployee" to add employee record in table.
+    "add dependent to add dependent record in table.
     "addDependentToEmployee" api will allow use to add dependent for an employee.
-    "removeDependentFromEmployee" api will allow us to remove any dependent from an employee
-
+    
+    **Note** both controller implements interface to accomodate furture additional requirments.
+   
 
 Question: To Calculate the total salary after deducting amount as per given rules:
 
-    1. I have created SalaryController which will deal with al salary related tasks.
-    "getEmployeeSalary" will allow us to get salary details of an employee by passing an employee id.
+    1. created SalaryController which will deal with all salary related tasks.
     "addSalaryToEmployee" will calculate salary by dividing it to 26 paycheck and deduct the amount as per the following rules and save the record in DB
+    "getEmployeeSalary" will allow us to get salary details of an employee by passing an employee id.
+    **Note**  controller implements interface to accomodate furture additional requirments.
+
 
     2. Calculation : to calculate final amount from gross salary , I have enhance RelationShip enum by adding one more field "Amount". it makes easy to make amount final get the amount         in for loop by comparing the relation type.
 
 DataBase 
 
-    I have used relational DataBase to make a relation b/w employye , dependent and salary data.
-    an employee can have many dependents.
-    an employee can have multiple salaries.
+    Used relational DataBase to make a relation b/w employye , dependent and salary data.
+    1. an employee can have many dependents.
+    2. an employee can have multiple salaries.
     *spring boot jpa dependency will aloow cfreating tbale on the fly while starting application.
 
-   Note : all controllers implemmenting interface to accomodate future requiremnts and enhancemnets.
+Question: Employee cant have both spouse and domestic partner 
+
+         "addDependentToEmployee" will validate dependent before adding and throw an exception if trying to add both.
     
     
