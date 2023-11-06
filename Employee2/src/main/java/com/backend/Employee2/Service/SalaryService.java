@@ -48,21 +48,20 @@ public class SalaryService {
         salary.setEmployee(employee.get());
         return salaryRepository.save(salary);
     }
-
+  // calculate by weekly salary, by deviding it in 26 equal parts
     public Double calculateFinalSalary(Employee emp) {
-        // get employee salary
-        Double totalSalary = emp.getGrossSalary();
-        System.out.println("total slary -- " +totalSalary);
-        //check if total salary is more than 80,000
         int MAX_SALARY = 80000;
         int TOTAL_PAYCHECK = 26;
-
+        // get employee salary
+        Double totalSalary = emp.getGrossSalary();
+        //check if total salary is more than 80,000
         if(totalSalary > MAX_SALARY) {
-            System.out.println("inside big salary");
             totalSalary = totalSalary - (totalSalary*2)/100 ;
         }
+
         // divide salary in equal 26 parts
         double byWeekly = totalSalary / TOTAL_PAYCHECK;
+        System.out.print("byweekly " + byWeekly);
         // get all the dependents
         List<Dependent> dependentsEntities = emp.getDependentsEntities();
         for( Dependent dependent : dependentsEntities) {
@@ -75,7 +74,8 @@ public class SalaryService {
                 default -> byWeekly;
             };
         }
-        byWeekly = byWeekly - 200;
+        // benefits
+        byWeekly = byWeekly - 500;
 
         if(byWeekly < 0) {
             throw new SalaryException(totalSalary);

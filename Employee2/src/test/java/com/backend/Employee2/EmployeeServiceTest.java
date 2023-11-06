@@ -44,7 +44,7 @@ class EmployeeServiceTest   {
     Employee getEmployeeById() {
         Optional<Employee> emp = Optional.of(new Employee());
         emp.get().setLastName("lastName");
-        emp.get().setSalary(190000.0);
+        emp.get().setGrossSalary(190000.0);
         emp.get().setFirstName("firstName");
 
         when(employeeRepository.findById(any())).thenReturn(emp);

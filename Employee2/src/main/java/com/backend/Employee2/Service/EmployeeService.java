@@ -36,6 +36,8 @@ import java.util.Optional;
         public Employee addDependentToEmployee(Long employee_id, Long dependent_id) {
             Employee employee = getEmployeeById(employee_id);
             Dependent dependents = dependentsService.getDependent(dependent_id);
+
+            // validation to check both spouse and domestic partner should not link to an employee
             boolean validRelation = validatePartner(employee, dependents);
             if(validRelation) {
                 employee.addDependents(dependents);

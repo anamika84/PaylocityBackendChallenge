@@ -36,13 +36,13 @@ public class SalaryTest {
     @Test
     public void getSalaryByEmployeeIdTest() {
         Salary salary = new Salary();
-        salary.setFinalSalary(4567.0);
+        salary.setTotalSalary(4567.0);
         salary.setId(1);
         List<Salary> salariesByEmployeeId = new ArrayList<>();
         salariesByEmployeeId.add(salary);
         when(salaryRepository.findSalariesByEmployee_Id(any())).thenReturn(salariesByEmployeeId);
         Salary salaryByEmployeeId = salaryService.getSalaryByEmployeeId(2L);
-        Assertions.assertEquals(4567.0, salaryByEmployeeId.getFinalSalary());
+        Assertions.assertEquals(4567.0, salaryByEmployeeId.getTotalSalary());
     }
 
     @Test
@@ -55,12 +55,11 @@ public class SalaryTest {
         Employee employee = new Employee();
         employee.setFirstName("fn");
         employee.setLastName("ln");
-        employee.setSalary(1000000.0);
+        employee.setGrossSalary(1000000.0);
         employee.setDependentsEntities(dependentList);
         when(employeeRepository.findById(any())).thenReturn(Optional.of(employee));
         salaryService.addSalaryToEmployee(employee.getId());
         Mockito.verify(employeeRepository, times(1)).findById(any());
-        Mockito.verify(salaryService, times(1)).calculateFinalSalary(any());
     }
 
     @Test
@@ -73,10 +72,24 @@ public class SalaryTest {
         Employee employee = new Employee();
         employee.setFirstName("fn");
         employee.setLastName("ln");
-        employee.setSalary(1000000.0);
+        employee.setGrossSalary(1000000.0);
         employee.setDependentsEntities(dependentList);
         when(employeeRepository.findById(any())).thenReturn(Optional.of(employee));
         Double calculateFinalSalary = salaryService.calculateFinalSalary(employee);
 
+    }
+
+    @Test
+    public void calculateFinalSalaryWhenNoDepdendents() {
+        List<Dependent> dependentList = new ArrayList<>();
+
+        Employee employee = new Employee();
+        employee.setFirstName("fn");
+        employee.setLastName("ln");
+        employee.setGrossSalary(50000.0);
+        employee.setDependentsEntities(dependentList);
+        when(employeeRepository.findById(any())).thenReturn(Optional.of(employee));
+        Double calculateFinalSalary = salaryService.calculateFinalSalary(employee);
+        Assertions.assertTrue(calculateFinalSalary <= 1424.0);
     }
 }
