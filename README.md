@@ -10,7 +10,7 @@ Technology used :
 Postman Collections: 
 
 
-Requirements
+Requirements :
 
 Question: Able to view employees and their dependents
 
@@ -30,7 +30,8 @@ DataBase
     I have used relational DataBase to make a relation b/w employye , dependent and salary data.
     an employee can have many dependents.
     an employee can have multiple salaries.
+    *spring boot jpa dependency will aloow cfreating tbale on the fly while starting application.
 
-    spring boot jpa dependency will aloow cfreating tbale on the fly while starting application.
+   Note : all controllers implemmenting interface to accomodate future requiremnts and enhancemnets.
     
     
