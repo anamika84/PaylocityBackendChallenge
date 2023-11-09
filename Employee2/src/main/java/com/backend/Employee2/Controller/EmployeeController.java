@@ -37,6 +37,7 @@ public class EmployeeController implements EmployeeImpl{
     }
 
     @Override
+    @GetMapping
     public ResponseEntity<List<EmployeeDto>> getEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
         List<EmployeeDto> employeeDtos = employees.stream().map(EmployeeDto::from).collect(Collectors.toList());
