@@ -5,10 +5,10 @@ import lombok.Getter;
 @Getter
 public enum Relationship {
         None("None", 0),
-        Spouse("Spouse", 300),
-        DomesticPartner("DomesticPartner", 300),
-        Child("Child", 300),
-        Elder("Elder", 100);
+        Spouse("Spouse", 600),
+        DomesticPartner("DomesticPartner", 600),
+        Child("Child", 600),
+        Elder("Elder", 200);
 
     private final String id;
     private final int amount;
