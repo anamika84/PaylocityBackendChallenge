@@ -18,7 +18,7 @@ import java.util.List;
         @Getter
         @jakarta.persistence.Id
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
         private String firstName;
         private String lastName;

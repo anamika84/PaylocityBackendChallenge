@@ -48,39 +48,54 @@ public class SalaryService {
         salary.setEmployee(employee.get());
         return salaryRepository.save(salary);
     }
-  // calculate by weekly salary, by deviding it in 26 equal parts
+  // calculate by weekly salary, by deciding it in 26 equal parts
     public Double calculateFinalSalary(Employee emp) {
         int MAX_SALARY = 80000;
-        int TOTAL_PAYCHECK = 26;
         // get employee salary
         Double totalSalary = emp.getGrossSalary();
+
+
         //check if total salary is more than 80,000
         if(totalSalary > MAX_SALARY) {
             totalSalary = totalSalary - (totalSalary*2)/100 ;
         }
 
-        // divide salary in equal 26 parts
-        double byWeekly = totalSalary / TOTAL_PAYCHECK;
-        System.out.print("byweekly " + byWeekly);
         // get all the dependents
         List<Dependent> dependentsEntities = emp.getDependentsEntities();
+        double totalDetectableAmount = 0D;
         for( Dependent dependent : dependentsEntities) {
 
             String relationType = dependent.getRelationType();
-            byWeekly = switch (relationType) {
-                case "Child" -> byWeekly - Relationship.Child.getAmount();
-                case "Spouse" -> byWeekly - Relationship.Spouse.getAmount();
-                case "Elder" -> byWeekly - Relationship.Elder.getAmount();
-                default -> byWeekly;
-            };
-        }
-        // benefits
-        byWeekly = byWeekly - 500;
+            switch(relationType) {
+                case "Child" :
+                     totalDetectableAmount = (double) (Relationship.Child.getAmount() * 12)/26;
+                     break;
+                case "Spouse" :
+                     totalDetectableAmount = (double) (Relationship.Spouse.getAmount() * 12)/26;
+                     break;
+                case "Elder" :
+                     totalDetectableAmount = (double) (Relationship.Elder.getAmount() * 12)/26;
+                     break;
+                case "DomesticPartner" :
+                     totalDetectableAmount = (double) (Relationship.DomesticPartner.getAmount() * 12)/26;
+                     break;
+                default :
+                    totalSalary = totalSalary - 0;
+                    break;
 
-        if(byWeekly < 0) {
+            };
+
+            totalSalary = totalSalary - totalDetectableAmount;
+        }
+
+        // benefits
+        Double baseCostByWeekly = (double) (1000*12 / 26);
+        totalSalary = totalSalary - baseCostByWeekly;
+
+        if(totalSalary < 0) {
             throw new SalaryException(totalSalary);
         }
-        return byWeekly;
+        return totalSalary;
     }
 
 }

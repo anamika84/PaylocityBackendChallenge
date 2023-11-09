@@ -6,6 +6,10 @@ import com.backend.Employee2.Repository.DependentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @Service
 public class DependentsService {
 
@@ -14,6 +18,16 @@ public class DependentsService {
     @Autowired
     public DependentsService(DependentRepository depenedentRepository) {
         this.dependentRepository = depenedentRepository;
+    }
+
+    public List<Dependent> getAllDependents() {
+        return StreamSupport.stream(dependentRepository.findAll().spliterator(), false).collect(Collectors.toList());
+    }
+
+    public Dependent deleteDependent(long id) {
+        Dependent dependent = getDependent(id);
+        dependentRepository.delete(dependent);
+        return dependent;
     }
 
     public Dependent addDependents(Dependent dependents) {

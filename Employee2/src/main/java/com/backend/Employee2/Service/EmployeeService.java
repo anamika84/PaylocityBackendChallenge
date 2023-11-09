@@ -9,7 +9,10 @@ import com.backend.Employee2.Repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
     public class EmployeeService {
@@ -24,13 +27,23 @@ import java.util.Optional;
             this.dependentsService = dependentsService;
         }
 
-        public Employee addEmployee(Employee employee) {
+        public List<Employee> getAllEmployees() {
+           return StreamSupport.stream(employeeRepository.findAll().spliterator(), false).collect(Collectors.toList());
+        }
+         public Employee addEmployee(Employee employee) {
             return  employeeRepository.save(employee);
         }
 
         public Employee getEmployeeById(Long id) {
+            System.out.println("id " +id);
            return employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
         }
+
+    public Employee deleteEmployee(Long id) {
+        Employee employee = getEmployeeById(id);
+        employeeRepository.delete(employee);
+        return employee;
+    }
 
         @Transactional
         public Employee addDependentToEmployee(Long employee_id, Long dependent_id) {

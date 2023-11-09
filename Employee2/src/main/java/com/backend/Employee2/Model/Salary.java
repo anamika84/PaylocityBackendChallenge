@@ -14,7 +14,7 @@ public class Salary {
 
     @jakarta.persistence.Id
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     Double totalSalary;
     @JsonIgnore
