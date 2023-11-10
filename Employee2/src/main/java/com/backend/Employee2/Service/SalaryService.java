@@ -59,32 +59,14 @@ public class SalaryService {
         if(totalSalary > MAX_SALARY) {
             totalSalary = totalSalary - (totalSalary*2)/100 ;
         }
-
+        totalSalary = totalSalary/26;
         // get all the dependents
         List<Dependent> dependentsEntities = emp.getDependentsEntities();
         double totalDetectableAmount = 0D;
         for( Dependent dependent : dependentsEntities) {
-
-            String relationType = dependent.getRelationType();
-            switch(relationType) {
-                case "Child" :
-                     totalDetectableAmount = (double) (Relationship.Child.getAmount() * 12)/26;
-                     break;
-                case "Spouse" :
-                     totalDetectableAmount = (double) (Relationship.Spouse.getAmount() * 12)/26;
-                     break;
-                case "Elder" :
-                     totalDetectableAmount = (double) (Relationship.Elder.getAmount() * 12)/26;
-                     break;
-                case "DomesticPartner" :
-                     totalDetectableAmount = (double) (Relationship.DomesticPartner.getAmount() * 12)/26;
-                     break;
-                default :
-                    totalSalary = totalSalary - 0;
-                    break;
-
-            };
-
+          //  String relationType = dependent.getRelationType();
+            Relationship relationship = Relationship.valueOf(dependent.getRelationType());
+            totalDetectableAmount = (double) (relationship.getAmount() * 12) /26;
             totalSalary = totalSalary - totalDetectableAmount;
         }
 

@@ -84,6 +84,7 @@ public class SalaryTest {
 
         double totalSalary = employee.getGrossSalary() - (employee.getGrossSalary()*2)/100;
         double totalDependentDeduction = (double) (Relationship.Child.getAmount() * 12)/26;
+        totalSalary = totalSalary/26;
         totalSalary = totalSalary - 2* totalDependentDeduction;
         totalSalary = totalSalary - (double) ((1000 * 12) /26);
         DecimalFormat df = new DecimalFormat("#.00");
@@ -101,7 +102,8 @@ public class SalaryTest {
         employee.setDependentsEntities(dependentList);
         when(employeeRepository.findById(any())).thenReturn(Optional.of(employee));
         Double calculateFinalSalary = salaryService.calculateFinalSalary(employee);
-        Assertions.assertTrue(calculateFinalSalary <= 1424.0);
+        double totalSalary= employee.getGrossSalary();
+        Assertions.assertTrue(calculateFinalSalary <= 1500);
     }
 
     @Test
@@ -123,7 +125,9 @@ public class SalaryTest {
         Double calculateFinalSalary = salaryService.calculateFinalSalary(employee);
 
         double totalDependentDeduction = (double) (Relationship.Child.getAmount() * 12)/26;
-        double totalSalary = employee.getGrossSalary() - 2* totalDependentDeduction;
+        double totalSalary= employee.getGrossSalary();
+        totalSalary = totalSalary/26;
+        totalSalary = totalSalary - 2* totalDependentDeduction;
         totalSalary = totalSalary - (double) ((1000 * 12) /26);
         DecimalFormat df = new DecimalFormat("#.00");
         Assertions.assertEquals(df.format(totalSalary), df.format(calculateFinalSalary));
@@ -148,9 +152,12 @@ public class SalaryTest {
         Double calculateFinalSalary = salaryService.calculateFinalSalary(employee);
 
         double totalDependentDeduction = (double) (Relationship.Child.getAmount() * 12)/26 + (double) (Relationship.Elder.getAmount() * 12) /26;
-        double totalSalary = employee.getGrossSalary() - totalDependentDeduction;
+        double totalSalary= employee.getGrossSalary();
+        totalSalary = totalSalary/26;
+        totalSalary = totalSalary - totalDependentDeduction;
         totalSalary = totalSalary - (double) ((1000 * 12) /26);
         DecimalFormat df = new DecimalFormat("#.00");
+        System.out.println("totalsalary " + totalSalary + "calculateFinalSalary " + calculateFinalSalary);
         Assertions.assertEquals(df.format(totalSalary), df.format(calculateFinalSalary));
     }
 

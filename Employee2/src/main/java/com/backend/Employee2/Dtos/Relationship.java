@@ -17,14 +17,5 @@ public enum Relationship {
             this.id = id;
             this.amount = amount;
         }
-
-        public Relationship findById(String id) {
-            for (Relationship r : Relationship.values()) {
-                if (r.id.equals(id)) {
-                    return r;
-                }
-            }
-            return null;
-        }
     }
 
